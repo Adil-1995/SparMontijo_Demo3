@@ -1,0 +1,98 @@
+<!-- <div class="card mt-5">
+  <div class="card-body">
+    <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+      <div class="form-group">
+        <input type="text" class="form-control" name="name" #name="ngModel"
+          [(ngModel)]="productService.selectedProduct.name" placeholder="add product name">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="category" #category="ngModel"
+          [(ngModel)]="productService.selectedProduct.category" placeholder="add product category">
+      </div>
+
+      <div class="form-group">
+        <input type="text" class="form-control" name="location" #location="ngModel"
+          [(ngModel)]="productService.selectedProduct.location" placeholder="add product location">
+      </div>
+
+      <div class="form-group">
+        <input type="text" class="form-control" name="price" #price="ngModel"
+          [(ngModel)]="productService.selectedProduct.price" placeholder="add product price">
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit"> Add Product
+        </button>
+        <button class="btn btn-danger" type="reset" (click)="resetForm(productForm)">Reset
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+</div> -->
+
+<!--
+
+
+<div >
+  <div >
+      <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+
+          <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="productService.selectedProduct.$key">
+
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              name="codigo"
+              #codigo="ngModel"
+              [(ngModel)]="productService.selectedProduct.codigo"
+              placeholder="Add A codigo"
+              >
+          </div>
+          <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="descripcion"
+                #descripcion="ngModel"
+                [(ngModel)]="productService.selectedProduct.descripcion"
+                placeholder="Add A descripcion"
+                >
+            </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              name="proveedor"
+              #proveedor="ngModel"
+              [(ngModel)]="productService.selectedProduct.proveedor"
+              placeholder="Add A proveedor"
+              >
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+
+              <input
+              type="date"
+                class="form-control"
+                name="fechaCaducidad"
+                #fechaCaducidad="ngModel"
+                [(ngModel)]="productService.selectedProduct.fechaCaducidad"
+
+                >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-plus-circle"></i> Add A Product
+            </button>
+            <button class="btn btn-secondary" type="reset" (click)="resetForm(productForm)">
+                <i class="fas fa-sync-alt"></i> Reset
+            </button>
+          </div>
+        </form>
+  </div>
+</div> -->
+

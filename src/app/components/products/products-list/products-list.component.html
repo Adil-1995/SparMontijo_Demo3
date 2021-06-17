@@ -1,0 +1,150 @@
+<div>
+  <img width="300" class="center" src="../../../assets/img/SparLogo.png">
+
+</div>
+<!-- hello -->
+<mdb-navbar  SideClass="navbar navbar-expand-lg navbar-dark indigo">
+    <ul  class="navbar-nav">
+      <a class="navbar-brand" href="">
+        <i class="fa fa-home fa-lg mr-2"></i>Inicio</a>
+      <li class="nav-item" data-toggle="modal" data-target="#exampleModal">
+        <a class="nav-link waves-light" mdbWavesEffect>
+          <i class="fa fa-plus-square fa-lg mr-2"></i>Añadir articulo</a>
+      </li>
+      <li (click)="show=false" class="nav-item" matBadgeSize="large" mat-raised-button color="primary" [matBadge]=newProducts.length
+        matBadgePosition="after" matBadgeColor="accent">
+        <a class="nav-link waves-light" mdbWavesEffect>
+          <i class="fa fa-hourglass-end fa-lg ml-3 mr-2" ></i>Próxima Caducidad</a>
+      </li>
+    </ul>
+
+    <div class="float-right ml-5">
+      <input type="text" class="form-control" placeholder="Código o descripcion"
+        style="width:200px; float: right; clear: both;" [(ngModel)]="searchTerm" />
+    </div>
+
+
+
+</mdb-navbar>
+
+<!--/.Navbar-->
+<div class="card-body">
+  <!-- paginator -->
+  <div class="mat-elevation-z8">
+    <table class="table table-sm table-hover">
+      <thead >
+        <tr class="tableElemets">
+          <th scope="col">Código</th>
+          <th scope="col">Descprición</th>
+          <th scope="col">Proveedor</th>
+          <th scope="col">Fecha de Caducidad</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- paginate:page_size:page_number -->
+
+        <tr *ngFor="let product of productList |employeeFilter:searchTerm ">
+          <ng-container *ngIf="show">
+          <td> {{product.codigo}} </td>
+          <td>{{ product.descripcion }}</td>
+          <td>{{ product.proveedor }}</td>
+          <td>{{ product.fechaCaducidad | date: 'dd/MM/yyyy' }}</td>
+          <td>
+            <button (click)="onEdit(product)" data-toggle="modal" data-target="#exampleModal" type="button"
+              class="btn btn">
+              <i class="fa fa-edit fa-lg"></i>
+
+            </button>
+          </td>
+          <td>
+            <button (click)="onDeletet(product.$key)" type="button" class="btn btn">
+              <i class="fa fa-trash"></i>
+
+            </button>
+          </td>
+        </ng-container>
+        </tr>
+<!------------------------- cadicidad ------------------->
+        <tr *ngFor="let product of newProducts |employeeFilter:searchTerm ">
+          <ng-container *ngIf="show ==false" >
+          <td> {{product.codigo}} </td>
+          <td>{{ product.descripcion }}</td>
+          <td>{{ product.proveedor }}</td>
+          <td>{{ product.fechaCaducidad  | date: 'dd/MM/yyyy' }}</td>
+          <td>
+            <button (click)="onEdit(product)" data-toggle="modal" data-target="#exampleModal" type="button"
+              class="btn btn">
+              <i class="fa fa-edit fa-lg"></i>
+
+            </button>
+          </td>
+          <td>
+            <button (click)="onDeletet(product.$key)" type="button" class="btn btn">
+              <i class="fa fa-trash"></i>
+
+            </button>
+          </td>
+        </ng-container>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Producto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- copyHere -->
+        <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+
+          <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="productService.selectedProduct.$key" />
+
+          <div class="form-group">
+
+            <input [readonly]="this.isEditable" ngModel pattern="[0-9]*" type="text" class="form-control" name="codigo" #codigo="ngModel"
+              [(ngModel)]="productService.selectedProduct.codigo" placeholder="Código" />
+          </div>
+          <div class="form-group">
+            <input [readonly]="this.isEditable" type="text" class="form-control" name="descripcion"
+              #descripcion="ngModel" [(ngModel)]="productService.selectedProduct.descripcion"
+              placeholder="Descripción" />
+          </div>
+          <div class="form-group">
+            <input [readonly]="this.isEditable" type="text" class="form-control" name="proveedor" #proveedor="ngModel"
+              [(ngModel)]="productService.selectedProduct.proveedor" placeholder=" Proveedor" />
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <input type="date" class="form-control"  name="fechaCaducidad" #fechaCaducidad="ngModel"
+               [(ngModel)]="productService.selectedProduct.fechaCaducidad" />
+
+            </div>
+          </div>
+          <button class="btn btn-primary" type="submit">
+            <i class="fa fa-plus-square fa-lg"></i> Añadir
+          </button>
+        </form>
+        <!-- here -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

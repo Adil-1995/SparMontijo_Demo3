@@ -1,0 +1,33 @@
+// .myTest {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+
+// }
+.my-icon {
+  width: 30px;
+  height: 50px;
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+}
+
+.tableElemets {
+background-color: #00c9b7;
+
+}
+
+table thead th { color: white; font-size:12pt; }
+
+.table td, .table th {
+  font-family: 'Roboto', sans-serif;
+  vertical-align: middle;
+
+}
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
